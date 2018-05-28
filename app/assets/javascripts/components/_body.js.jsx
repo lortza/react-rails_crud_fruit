@@ -5,10 +5,15 @@ class Body extends React.Component {
     this.state = {
       fruits: []
     }
+    // CRUD CREATE
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.addFruitToView = this.addFruitToView.bind(this)
+    // CRUD Delete
     this.handleDelete = this.handleDelete.bind(this)
     this.removeFruitFromView = this.removeFruitFromView.bind(this)
+    // CRUD Update
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.updateFruitInView = this.updateFruitInView.bind(this)
   }
 
   handleFormSubmit(name, description) {
@@ -54,6 +59,31 @@ class Body extends React.Component {
     })
   }
 
+  handleUpdate(fruit){
+    // Send a PUT request to update the Rails API data
+    fetch(`http://localhost:3000/api/v1/fruits/${fruit.id}`,
+    {
+      method: 'PUT',
+      body: JSON.stringify({fruit: fruit}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      this.updateFruitInView(fruit)
+    })
+  }
+
+  updateFruitInView(fruit){
+    // Get an array of all of the other fruits
+    let otherFruits = this.state.fruits.filter((f) => f.id !== fruit.id)
+    // Push the updated fruit record into that array
+    otherFruits.push(fruit)
+    // Set the state with the updated fruits
+    this.setState({
+      fruits: otherFruits
+    })
+  }
+
   componentDidMount(){
     // Do a GET request to the Rails API
     // Then set the state data
@@ -66,7 +96,7 @@ class Body extends React.Component {
     return (
       <React.Fragment>
         <NewFruitForm handleFormSubmit={this.handleFormSubmit} />
-        <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete} />
+        <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate} />
       </React.Fragment>
     )
   }
