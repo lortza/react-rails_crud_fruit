@@ -9,3 +9,7 @@ Follows the tutorial [Simple Rails CRUD app with React Frontend, using ‘react-
 * Ruby '2.5.0'
 * Rails '~> 5.2.0'
 * Sqlite3
+
+## Current Progress
+
+- "Deleting a fruit"
