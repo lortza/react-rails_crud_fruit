@@ -21,6 +21,8 @@ class AllFruits extends React.Component {
           <p>{fruit.description}</p>
         </div>
       )
+    const mappedFruits = this.props.fruits.map((fruit) => {
+      return( <Fruit key={fruit.id} data={fruit} /> )
     })
 
     return (
