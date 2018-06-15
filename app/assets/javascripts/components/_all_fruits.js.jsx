@@ -6,7 +6,8 @@ class AllFruits extends React.Component {
     })
 
     return (
-      <div>
+      <div className="all-fruits component">
+        <p className="component-name">all_fruits component</p>
         {mappedFruits}
       </div>
     )

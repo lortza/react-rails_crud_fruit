@@ -94,10 +94,11 @@ class Body extends React.Component {
 
   render(){
     return (
-      <React.Fragment>
+      <div className="body component">
+        <p className="component-name">body component</p>
         <NewFruitForm handleFormSubmit={this.handleFormSubmit} />
         <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate} />
-      </React.Fragment>
+      </div>
     )
   }
 }

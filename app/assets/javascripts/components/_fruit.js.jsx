@@ -38,14 +38,15 @@ class Fruit extends React.Component {
     let cancelButton = this.state.editable ? <button onClick={() => this.cancelEdit()}>Cancel</button> : ""
 
     return (
-    <React.Fragment>
+    <div className="fruit component">
+      <p className="component-name">fruit component</p>
       {nameEntry}
       {descriptionEntry}
       <button onClick={() => this.handleEdit()}>{this.state.editable? 'Submit' : 'Edit'}</button>
       {cancelButton}
       <button onClick={() => this.props.handleDelete(id)}>Delete</button>
       <hr/>
-    </React.Fragment>
+    </div>
     )
   }
 }
